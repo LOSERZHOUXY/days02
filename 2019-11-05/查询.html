@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 500px;
+				border: 2px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="box">
+			<p>
+				查询：<input type="text">
+				<button type="button">下一个</button>
+				<button type="button">全选</button>
+			</p>
+			<p>
+				替换：<input type="text">
+				<button type="button">下一个</button>
+				<button type="button">全选</button>
+			</p>
+			<div class="item">
+				近日，据媒体报道，为了摆脱美国控制，土耳其或许再次向大国求助，在最近土耳其进攻叙利亚的过程中，美国掐断了土耳其的GPS信号，导致土耳其的作战行动受到了巨大影响，那么一旦美国掐断GPS信号，大国会让土耳其用北斗吗？对此有军迷怒怼称给钱也不卖，此前土耳其就在进口大国红旗9防空导弹时耍了手段，让中国损失惨重，历史教训绝不能忘。
+				土耳其是北约国家，所以这个国家的军事装备主要以西方为主，美国也是土耳其主要的武器供应方，目前土耳其就装备了美国提供的F16战机与M60A3坦克，所以土耳其的武器装备很大程度上都需要美国提供信息支持，一旦失去了信息支持，那么这些武器装备在战场上很难发挥出作用，最终只能让土耳其陷入被动。
+			</div>
+		</div>
+		<script src="js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var btns = document.querySelectorAll('button');
+			var str = document.querySelector('.item').innerHTML;
+			var inputs = document.querySelectorAll('input');
+			var nub = 0;
+			var arr = [];
+			var ss = '';
+			var arr3 = null;
+			btns[1].onclick = function() {
+				var sear = $('input')[0].value;
+				if (str.indexOf(sear) != -1) {
+					if (sear.trim()) {
+						var arr = str.split(sear);
+						var str1 = '';
+						for (var i = 0; i < arr.length; i++) {
+							if (i == arr.length - 1) {
+								str1 += arr[i];
+							} else {
+								str1 += arr[i] + '<mark>' + sear + '</mark>';
+							}
+						}
+						document.querySelector('.item').innerHTML = str1;
+					} else {
+						alert('请输入查询内容');
+					}
+				}
+			}
+			btns[0].onclick = function() {
+				var sear = $('input')[0].value;
+
+				if (str.indexOf(sear) != -1) {
+					if (sear.trim()) {
+						var arr = str.split(sear);
+						if(arr.length<=1){
+							return;
+						}
+						var str1 = '';
+						if (nub == arr.length - 1) {
+							nub = 0;
+						}
+
+						for (var i = 0; i < arr.length; i++) {
+							if (i == arr.length - 1) {
+								str1 += arr[i];
+							} else {
+								if (nub == i) {
+									str1 += arr[i] + '<mark>' + sear + '</mark>';
+								} else {
+									str1 += arr[i] + sear;
+								}
+							}
+						}
+						nub++;
+						document.querySelector('.item').innerHTML = str1;
+					} else {
+						alert('请输入查询内容');
+					}
+				}
+				$('input')[0].oninput = function() {
+					nub = 0;
+				}
+			}
+			btns[2].onclick = function() {
+				var serch = inputs[0].value;
+				var replace = inputs[1].value;
+
+				if (serch.trim() && serch != null) {
+					
+					arr3 = str.split(serch)
+					if(arr3.length<=1){
+						return;
+					}
+					//console.log(serch,replace);
+					var str3 = '';
+					if (nub == arr3.length - 1) {
+						alert('没有更多了')
+					}
+
+					for (var i = 0; i < arr3.length; i++) {
+						if (i == arr3.length - 1) {
+							str3 += arr3[i];
+						} else {
+							if ( i<=nub ) {
+								str3 += arr3[i] + '<mark>' + replace + '</mark>';
+							} else {
+								str3 += arr3[i] + serch;
+							}
+						}
+
+					}
+					nub++;
+					document.querySelector('.item').innerHTML = str3;
+
+				}
+			}
+			
+			btns[3].onclick = function() {
+				var serch = inputs[0].value;
+				var replace = inputs[1].value;
+			
+				if (serch.trim() && serch != null) {
+					arr3 = str.split(serch)
+					//console.log(serch,replace);
+					var str3 = '';
+					for (var i = 0; i < arr3.length; i++) {
+						if (i == arr3.length - 1) {
+							str3 += arr3[i];
+						} else {
+								str3 += arr3[i] + '<mark>' + replace + '</mark>';
+						}
+					}
+					document.querySelector('.item').innerHTML = str3;
+			
+				}
+			}
+			$('input')[0].oninput = function() {
+				nub = 0;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		body {
+			font: 12px/150% Arial, Verdana, "\5b8b\4f53";
+		}
+		
+		a {
+			color: #666;
+			text-decoration: none;
+		}
+		
+		ul li {
+			list-style: none;
+		}
+		
+		.sl-wrap {
+			position: relative;
+			line-height: 34px;
+			border-bottom: 1px solid #DDD;
+		}
+		
+		.sl-key {
+			float: left;
+			width: 100px;
+			padding-left: 10px;
+		}
+		
+		.sl-value {
+			margin-left: 110px;
+			padding-right: 130px;
+			padding-left: 10px;
+			overflow: hidden;
+		}
+		
+		.sl-v-list {
+			overflow: hidden;
+			padding-top: 4px;
+		}
+		
+		img {
+			border: none;
+		}
+		
+		.sl-v-list ul {
+			float: left;
+			overflow: hidden;
+			position: relative;
+			height: 30px;
+		}
+		
+		.sl-v-list li {
+			float: left;
+			_display: inline;
+			margin-right: 16px;
+			margin-bottom: 4px;
+			height: 26px;
+			line-height: 26px;
+		}
+		
+		.sl-v-list li a {
+			float: left;
+			white-space: nowrap;
+			color: #005aa0;
+			text-decoration: none;
+		}
+		
+		.crumbs-nav-item {
+			display: none;
+			float: left;
+			margin-right: 8px;
+			width:100px;
+			height:30px;
+			margin-top: 5px;
+			position: relative;
+			border:1px solid #000;
+			font-size: 14px;
+		}
+		.crumbs-nav-item span{
+			position: absolute;
+			left:2px;
+			top:8px;
+		}
+		.crumbs-nav-item i{
+			position: absolute;
+			right:10px;
+			color: red;
+			top:8px;
+		}
+	.crumbs-nav-item i:hover{
+		cursor: pointer;
+	}
+	</style>
+
+	<body>
+		<div class="sl-wrap">
+			<div class="sl-key">
+				<span>价格：</span>
+			</div>
+			<div class="sl-value">
+				<div class="sl-v-list">
+					<ul class="J_valueList" myName="价格:">
+						<li>
+							<a href="javascript:;">0-299</a>
+						</li>
+						<li>
+							<a href="javascript:;">300-699</a>
+						</li>
+						<li>
+							<a href="javascript:;">700-1099</a>
+						</li>
+						<li>
+							<a href="javascript:;">1100-1999</a>
+						</li>
+						<li>
+							<a href="javascript:;">2000-3599</a>
+						</li>
+						<li>
+							<a href="javascript:;">3600-4299</a>
+						</li>
+						<li>
+							<a href="javascript:;">4300以上</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="sl-wrap">
+			<div class="sl-key">
+				<span>类别：</span>
+			</div>
+			<div class="sl-value">
+				<div class="sl-v-list">
+					<ul class="J_valueList" myName="类别:">
+						<li>
+							<a href="javascript:;">文件夹</a>
+						</li>
+						<li>
+							<a href="javascript:;">办公套装</a>
+						</li>
+						<li>
+							<a href="javascript:;">文件筐</a>
+						</li>
+						<li>
+							<a href="javascript:;">美工刀</a>
+						</li>
+						<li>
+							<a href="javascript:;">三针一钉</a>
+						</li>
+						<li>
+							<a href="javascript:;">风琴包</a>
+						</li>
+						<li>
+							<a href="javascript:;">票夹</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="sl-wrap">
+			<div class="sl-key">
+				<span>品牌:</span>
+			</div>
+			<div class="sl-value">
+				<div class="sl-v-list">
+					<ul class="J_valueList" myName="品牌:">
+						<li>
+							<a href="javascript:;">得力</a>
+						</li>
+						<li>
+							<a href="javascript:;">齐心</a>
+						</li>
+						<li>
+							<a href="javascript:;">优必利</a>
+						</li>
+						<li>
+							<a href="javascript:;">三木</a>
+						</li>
+						<li>
+							<a href="javascript:;">GBC</a>
+						</li>
+						<li>
+							<a href="javascript:;">广博</a>
+						</li>
+						<li>
+							<a href="javascript:;">利兰</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="box">
+			<div class="crumbs-nav-item"></div>
+			<div class="crumbs-nav-item"></div>
+			<div class="crumbs-nav-item"></div>
+		</div>
+		<div id="box2"></div>
+		<script src="js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var price = $('.J_valueList');
+			var crumbs = $('.crumbs-nav-item');
+			for(var i=0;i<price.length;i++){
+					var lis = $('li', price[i]);
+					var oAs = $('a', price[i]);
+				fn(oAs,lis,i);
+			}
+			function fn(obj1,obj2,nub){
+				forEach(obj1, function(el, i) {
+				bind(el, 'click', function() {
+					for (var j = 0; j < obj1.length; j++) {
+						obj2[j].style.display = 'block';
+					}
+					obj2[i].style.display = 'none';
+					num = i;
+					//console.log(el.innerHTML);
+					crumbs[nub].style.display = 'block';
+					var p = el.innerHTML
+					crumbs[nub].innerHTML = '<span>' +
+						p +
+						'</span>' +
+						'<i>x</i>';
+					var close1 =$('i',crumbs[nub])[0];
+					//console.log(close1);
+					bind(close1,'click',function(){
+						crumbs[nub].innerHTML='';
+						crumbs[nub].style.display = 'none';
+						for (var j = 0; j < obj1.length; j++) {
+							obj2[j].style.display = 'block';
+						}
+					})
+				})
+			})
+			}
+			
+		</script>
+	</body>
+
+</html>
